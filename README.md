@@ -1,5 +1,5 @@
 # Olimpiadi
 
 ## Todo:
-#### Il design
-#### Diagramma entity relationship
+Il design
+Diagramma entity relationship
