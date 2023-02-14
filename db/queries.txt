@@ -1,0 +1,16 @@
+Prende le squadre che partecipano ad una fase, in questo caso a quella cod id = 1 (query 1 su classroom):
+
+SELECT tsquadra.id as id_squadra, tsquadra.nome as squadra, tfasegara.nome AS fase_gara, tgara.target AS luogo_gara FROM `tsquadra` 
+INNER JOIN tpartecipazionesquadra ON tsquadra.id = tpartecipazionesquadra.idSquadra
+INNER JOIN tgara ON tpartecipazionesquadra.idGara = tgara.id
+INNER JOIN tfasegara ON tgara.idFaseGara = tfasegara.id
+WHERE tfasegara.id = 1;
+
+------------------------------------------------------------------
+
+Calcola il punteggio di una squadra (in questo caso quella con id = 1) in una fase gara:
+
+SELECT AVG(punteggio) AS punteggio FROM tpartecipazioneatleta
+INNER JOIN tatleta ON tatleta.id = tpartecipazioneatleta.idAtleta
+INNER JOIN tgara ON tgara.id = tpartecipazioneatleta.idGara
+WHERE tatleta.idSquadra = 1 AND tgara.idFaseGara= 1;
