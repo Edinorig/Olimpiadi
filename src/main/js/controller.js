@@ -13,10 +13,7 @@ class Controller {
         };
 
         this.fase = fasi.scolastica;
-
         this.changeFase(this.fase);
-
-        
     }
 
     async changeFase(fase){
@@ -25,9 +22,22 @@ class Controller {
         this.view.initDataTable(Object.keys(this.model.teams[0]));
         for (let key in this.model.teams) {
             if (this.model.teams.hasOwnProperty(key)) {
-              this.view.addEntry(this.model.teams[key]);
+
+                // TODO
+                //per gestire il click delle squadre, visto che usiamo una sola tabella, distinguo tra il caso in 
+                //cui nella tabella ci siano delle squadre, e quello in cui ci sono gli atleti, ci sono modi migliori?
+
+                //bisognerebbe anche far si che cliccando sulla gara si possa vedere la classifica, quindi si deve mettere un 
+                //click event anche su quella forse
+                const team = this.model.teams[key];
+                if(team){
+                    this.view.addEntry(this.model.teams[key], (entry => console.log(team)));
+                }else{
+                    this.view.addEntry(this.model.teams[key], (entry => console.log(team)));
+                }
+                
             }
-          }
+        }
     }
 }
 

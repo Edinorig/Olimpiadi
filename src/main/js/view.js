@@ -31,22 +31,13 @@ export class View {
         this.dataTableTbody = tbody;
     }
 
-    addEntry(entry){
+    addEntry(entry, eventListener){
         const trow = this.createElement("tr", "data-row");
         
-        // TODO
-        //per gestire il click delle squadre, visto che usiamo una sola tabella, distinguo tra il caso in 
-        //cui nella tabella ci siano delle squadre, e quello in cui ci sono gli atleti, ci sono modi migliori?
-
-        //bisognerebbe anche far si che cliccando sulla gara si possa vedere la classifica, quindi si deve mettere un 
-        //click event anche su quella forse
-        if(entry.id_squadra != undefined){ 
-            trow.addEventListener("click", () => console.log(entry.id_squadra));
-        }else{
-            trow.addEventListener("click", () => console.log(entry.id_atleta));
+        if(eventListener){
+            trow.addEventListener("click", eventListener);
         }
         
-
         for (let key in entry) {
           if (entry.hasOwnProperty(key)) {
             const tdata = this.createElement("td");

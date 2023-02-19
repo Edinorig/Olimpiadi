@@ -7,8 +7,6 @@
     
     $queryResponse = mysqli_query($db, "SELECT * FROM tatleta WHERE tatleta.idSquadra = $id_squadra");
 
-
-
     $json = array();
     while($row = mysqli_fetch_assoc($queryResponse)){
         $json[] = $row;
