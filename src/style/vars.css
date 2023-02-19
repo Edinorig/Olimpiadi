@@ -1,0 +1,9 @@
+:root{
+    --background: #FFFFFF;
+    --background-accent: rgba(46, 196, 182, 0.8);
+    --background-extend:  rgba(255, 159, 28, 0.8);
+    --background-modal-window: rgba(103, 103, 103, 0.5);
+
+    --text: #272727;
+    --text-extend: #FFFFFF;
+}

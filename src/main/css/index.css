@@ -1,0 +1,23 @@
+body{
+    margin: 0;
+
+    height: 100vh;
+    width: 100vw;
+
+    padding-left: 8rem;
+    padding-right: 8rem;
+
+    background: var(--background);
+}
+
+.data-row{
+    cursor: pointer;
+}
+
+.data-row:hover{
+    text-decoration: underline;
+}
+
+.data-row:active{
+    opacity: 0.4;
+}
