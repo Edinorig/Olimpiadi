@@ -1,7 +1,7 @@
 export class View {
     constructor() {
         this.dataTable = document.querySelector(".data-table");
-       
+        
     }
 
     createElement(tag, className) {
@@ -15,6 +15,33 @@ export class View {
             this.dataTable.removeChild(this.dataTable.lastChild);
           }
     }
+
+    initDataTable(columns){
+        const thead = this.createElement("thead");
+        const trow = this.createElement("tr");
+        this.dataTable.appendChild(thead);
+        thead.appendChild(trow);
+        columns.forEach(column => {
+          const newColumn = this.createElement("th");
+          newColumn.innerHTML = column;
+          trow.appendChild(newColumn);
+        })
+        const tbody = this.createElement("tbody");
+        this.dataTable.appendChild(tbody);
+        this.dataTableTbody = tbody;
+    }
+
+    addEntry(entry){
+        const trow = this.createElement("tr");
+        for (let key in entry) {
+          if (entry.hasOwnProperty(key)) {
+            const tdata = this.createElement("td");
+            tdata.innerHTML = entry[key];
+            trow.appendChild(tdata);
+          }
+        }
+        this.dataTableTbody.appendChild(trow);
+      }
 
 }
 
