@@ -4,38 +4,31 @@ class Controller {
     constructor(model, view) {
         this.model = model;
         this.view = view;
+        this.init();
+    }
 
-        const fasi = {
-            "scolastica": 1,
-            "regionale": 2,
-            "nazionale": 3,
-            "internazionale": 4,
-        };
+    async init(){
+        const fasi = await this.model.getFasi();
+        fasi.forEach(fase => {
+            this.view.addFaseButton(fase, () => this.changeFase(fase))
+        });
 
-        this.fase = fasi.scolastica;
+        this.fase = fasi[0]; //inizia con la fase scolastica
         this.changeFase(this.fase);
     }
 
     async changeFase(fase){
-        await this.model.fetchTeamsByFase(fase);
+        await this.model.fetchTeamsByFase(fase.id);
         this.view.clearDataTable();
         this.view.initDataTable(Object.keys(this.model.teams[0]));
         for (let key in this.model.teams) {
             if (this.model.teams.hasOwnProperty(key)) {
 
-                // TODO
-                //per gestire il click delle squadre, visto che usiamo una sola tabella, distinguo tra il caso in 
-                //cui nella tabella ci siano delle squadre, e quello in cui ci sono gli atleti, ci sono modi migliori?
-
+                //TODO
                 //bisognerebbe anche far si che cliccando sulla gara si possa vedere la classifica, quindi si deve mettere un 
                 //click event anche su quella forse
                 const team = this.model.teams[key];
-                if(team){
-                    this.view.addEntry(this.model.teams[key], (entry => console.log(team)));
-                }else{
-                    this.view.addEntry(this.model.teams[key], (entry => console.log(team)));
-                }
-                
+                this.view.addEntry(team, (() => console.log(team)));
             }
         }
     }

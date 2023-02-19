@@ -1,13 +1,22 @@
 export class View {
     constructor() {
         this.dataTable = document.querySelector(".data-table");
-        
+        this.fasiButtons = document.querySelector(".fasi-buttons");
     }
 
     createElement(tag, className) {
         const element = document.createElement(tag);
         if (className) element.classList.add(className); //se hai passato una classe css la aggiunge, sennò non lo fa
         return element
+    }
+
+    addFaseButton(faseData, eventListener){
+        const button = this.createElement("button");
+        button.name = "fase";
+        button.value = faseData.id;
+        button.innerHTML = faseData.nome;
+        button.addEventListener("click", eventListener);
+        this.fasiButtons.appendChild(button);
     }
 
     clearDataTable(){

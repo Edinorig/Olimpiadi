@@ -12,4 +12,14 @@ export class Model {
             .then(response => this.teams = JSON.parse(response.data))
             .catch(exeption => console.log(exeption));
     }
+
+    async getFasi(){
+        if(this.fasi == undefined){
+            await UtilsFetch.postData("../common/php/getFasiGara.php")
+                .then(response => this.fasi = JSON.parse(response.data))
+                .catch(exeption => console.log(exeption));
+            
+        }
+        return this.fasi;
+    }
 }
