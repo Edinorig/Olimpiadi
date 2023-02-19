@@ -18,7 +18,6 @@ export class Model {
             await UtilsFetch.postData("../common/php/getFasiGara.php")
                 .then(response => this.fasi = JSON.parse(response.data))
                 .catch(exeption => console.log(exeption));
-            
         }
         return this.fasi;
     }
