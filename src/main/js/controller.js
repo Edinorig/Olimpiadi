@@ -12,7 +12,7 @@ class Controller {
             "internazionale": 4,
         };
 
-        this.fase = fasi.regionale;
+        this.fase = fasi.scolastica;
 
         this.changeFase(this.fase);
 
@@ -28,7 +28,6 @@ class Controller {
               this.view.addEntry(this.model.teams[key]);
             }
           }
-        console.log(this.model.teams);
     }
 }
 

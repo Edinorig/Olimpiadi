@@ -18,14 +18,25 @@
         $team_id = $row["id_squadra"];
 
 
+        //prendi il punteggio
         $teamQueryResponse = mysqli_query($db, "SELECT AVG(punteggio) AS punteggio FROM tpartecipazioneatleta
             INNER JOIN tatleta ON tatleta.id = tpartecipazioneatleta.idAtleta
             INNER JOIN tgara ON tgara.id = tpartecipazioneatleta.idGara
             WHERE tatleta.idSquadra = $team_id AND tgara.idFaseGara = $id_fase;");
 
         $punteggio = mysqli_fetch_assoc($teamQueryResponse)['punteggio'];
-
         $row['punteggio'] = round($punteggio);
+
+
+        //numero atleti
+        $nAtletiQueryResponse = mysqli_query($db, "SELECT COUNT(*) AS n from tatleta WHERE tatleta.idSquadra = $team_id");
+        $row['numero_atleti'] = mysqli_fetch_assoc($nAtletiQueryResponse)['n'];
+        
+
+        //età media atleti
+        $etaMediaQueryResponse = mysqli_query($db, " SELECT ROUND(AVG((DATEDIFF(CURRENT_DATE(), tatleta.dataNascita))/365)) AS eta_media from tatleta WHERE tatleta.idSquadra = $team_id;");
+        $row['eta_media'] = mysqli_fetch_assoc($etaMediaQueryResponse)['eta_media'];
+       
 
         $json[] = $row;
      }
