@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Feb 14, 2023 alle 08:55
--- Versione del server: 10.4.24-MariaDB
--- Versione PHP: 8.1.4
+-- Creato il: Feb 23, 2023 alle 19:06
+-- Versione del server: 10.4.25-MariaDB
+-- Versione PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,7 +45,8 @@ INSERT INTO `tatleta` (`id`, `nome`, `cognome`, `dataNascita`, `idSquadra`, `idI
 (1, 'Joel', 'Bosio', '2004-02-02', 1, 1, 1),
 (2, 'Lorenzo', 'Gambel', '2004-05-05', 1, 1, 1),
 (3, 'Alexandre ', 'Germain', '2006-09-08', 2, 2, 2),
-(4, 'Cesare ', 'Olivati', '2004-02-12', 3, 1, 1);
+(4, 'Cesare ', 'Olivati', '2004-02-12', 3, 1, 1),
+(5, 'Marietto', 'Malandrini', '2013-02-01', 4, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -88,7 +89,12 @@ CREATE TABLE `tgara` (
 --
 
 INSERT INTO `tgara` (`id`, `target`, `data`, `viaSede`, `nCivicoSede`, `idFaseGara`) VALUES
-(1, 'ITS Volta', '2023-02-14', 'Via Monte Grappa', 1, 1);
+(1, 'ITS Volta', '2023-02-14', 'Via Monte Grappa', 1, 1),
+(2, 'Friuli-Venezia Giulia', '2023-02-01', 'Via Roma ', 1, 2),
+(3, 'Istituto brutto francese', '2022-11-16', 'Via francese', 1, 1),
+(4, 'Italia', '2023-02-21', 'Val rosandra', 1, 3),
+(5, 'ITS Genova', '2022-01-06', 'Via mare ', 1, 1),
+(6, 'Liguria', '2023-02-17', 'Via Luka Sciardis', 6, 2);
 
 -- --------------------------------------------------------
 
@@ -107,7 +113,8 @@ CREATE TABLE `tistituto` (
 
 INSERT INTO `tistituto` (`id`, `nome`) VALUES
 (1, 'ITS Volta'),
-(2, 'Reyer Institute');
+(2, 'Reyer Institute'),
+(3, 'ITS Genova');
 
 -- --------------------------------------------------------
 
@@ -148,7 +155,13 @@ CREATE TABLE `tpartecipazioneatleta` (
 INSERT INTO `tpartecipazioneatleta` (`id`, `punteggio`, `idAtleta`, `idGara`) VALUES
 (1, 30, 4, 1),
 (2, 40, 1, 1),
-(3, 100, 2, 1);
+(3, 100, 2, 1),
+(4, 5, 1, 2),
+(5, 0, 2, 2),
+(6, 90, 3, 3),
+(7, 100, 5, 5),
+(8, 100, 5, 6),
+(9, 90, 5, 4);
 
 -- --------------------------------------------------------
 
@@ -168,7 +181,12 @@ CREATE TABLE `tpartecipazionesquadra` (
 
 INSERT INTO `tpartecipazionesquadra` (`id`, `idGara`, `idSquadra`) VALUES
 (1, 1, 1),
-(2, 1, 3);
+(2, 1, 3),
+(3, 2, 1),
+(4, 3, 2),
+(5, 5, 4),
+(6, 6, 4),
+(7, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -188,7 +206,8 @@ CREATE TABLE `tsquadra` (
 INSERT INTO `tsquadra` (`id`, `nome`) VALUES
 (1, 'Fazzoletti'),
 (2, 'Ratatouille'),
-(3, 'Piastrelle');
+(3, 'Piastrelle'),
+(4, 'Tirchi');
 
 --
 -- Indici per le tabelle scaricate
@@ -258,7 +277,7 @@ ALTER TABLE `tsquadra`
 -- AUTO_INCREMENT per la tabella `tatleta`
 --
 ALTER TABLE `tatleta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT per la tabella `tfasegara`
@@ -270,13 +289,13 @@ ALTER TABLE `tfasegara`
 -- AUTO_INCREMENT per la tabella `tgara`
 --
 ALTER TABLE `tgara`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT per la tabella `tistituto`
 --
 ALTER TABLE `tistituto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `tnazionalita`
@@ -288,19 +307,19 @@ ALTER TABLE `tnazionalita`
 -- AUTO_INCREMENT per la tabella `tpartecipazioneatleta`
 --
 ALTER TABLE `tpartecipazioneatleta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT per la tabella `tpartecipazionesquadra`
 --
 ALTER TABLE `tpartecipazionesquadra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT per la tabella `tsquadra`
 --
 ALTER TABLE `tsquadra`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Limiti per le tabelle scaricate
