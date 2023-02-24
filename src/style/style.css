@@ -1,2 +1,4 @@
 @import url('./vars.css');
+@import url('./font.css');
 @import url('../../src/common/components/header/header.css');
+@import url('./table.css');

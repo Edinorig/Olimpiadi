@@ -1,3 +1,3 @@
 <?php
-    $db = mysqli_connect("localhost", "root", "","olimpiadiquercioli") or die("errore nella connessione");
+    $db = mysqli_connect("localhost", "root", "root","olimpiadiquercioli") or die("errore nella connessione");
 ?>

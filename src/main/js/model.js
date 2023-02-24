@@ -19,6 +19,7 @@ export class Model {
                 .then(response => this.fasi = JSON.parse(response.data))
                 .catch(exeption => console.log(exeption));
         }
+        console.log(this.fasi);
         return this.fasi;
     }
 }

@@ -14,7 +14,7 @@ export class View {
         const button = this.createElement("button");
         button.name = "fase";
         button.value = faseData.id;
-        button.innerHTML = faseData.nome;
+        button.innerHTML = `<p>${faseData.nome}</p>`;
         button.addEventListener("click", eventListener);
         this.fasiButtons.appendChild(button);
     }
@@ -72,3 +72,9 @@ const props = {
 
 const header = new Header(wrapper.header, props.header);
 header.init();
+
+
+const btn = document.querySelector('button[name="fasi"]');
+/* btn.addEventListener('click', (e) => {
+console.log("clicked");
+}); */
