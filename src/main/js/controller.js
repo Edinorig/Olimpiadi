@@ -30,6 +30,8 @@ class Controller {
             this.showAtletiByNome(nome);
         });
 
+        this.view.winnerButton.addEventListener("click", () => this.showWinners());
+
         this.fase = fasi[0]; //inizia con la fase scolastica
         this.changeFase(this.fase);
     }
@@ -49,6 +51,13 @@ class Controller {
                 this.view.addEntry(team, (() => this.showAtleti(team)));
             }
         }
+    }
+
+
+    async showWinners() {
+        this.view.modifyCategoryTitle("Vincitori");
+        const winners = await this.model.getWinners();
+        console.log(winners);
     }
 
     async showAtleti(team) {

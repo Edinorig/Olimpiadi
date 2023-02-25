@@ -5,6 +5,21 @@ body {
     background: var(--background);
 }
 
+#winner-button {
+    margin-left: 500px;
+    border-color: rgb(176, 176, 19);
+    border-width: 2px;
+    background-color: yellow;
+}
+
+#winner-button:hover {
+    opacity: 0.8;
+}
+
+#winner-button:active {
+    opacity: 0.6;
+}
+
 .data-row {
     cursor: pointer;
 }

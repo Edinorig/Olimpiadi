@@ -16,6 +16,8 @@ while ($row = mysqli_fetch_assoc($queryResponse)) {
     $json[] = $row;
 }
 
+
+
 $response = array(
     'status' => 200,
     'data' => json_encode($json),
