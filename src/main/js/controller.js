@@ -18,17 +18,44 @@ class Controller {
     }
 
     async changeFase(fase) {
+        this.view.modifyCategoryTitle("Squadre");
         await this.model.fetchTeamsByFase(fase.id);
         this.view.clearDataTable();
         this.view.initDataTable(Object.keys(this.model.teams[0]));
         for (let key in this.model.teams) {
             if (this.model.teams.hasOwnProperty(key)) {
 
-                //TODO
+                //TODO  
                 //bisognerebbe anche far si che cliccando sulla gara si possa vedere la classifica, quindi si deve mettere un 
                 //click event anche su quella forse
                 const team = this.model.teams[key];
-                this.view.addEntry(team, (() => console.log(team)));
+                this.view.addEntry(team, (() => this.showAtleti(team)));
+            }
+        }
+    }
+
+    async showAtleti(team) {
+        this.view.modifyCategoryTitle("Atleti");
+        const atleti = await this.model.getAtletiBySquadra(team.id_squadra);
+        this.view.clearDataTable();
+        this.view.initDataTable(Object.keys(atleti[0]));
+        for (let key in atleti) {
+            if (atleti.hasOwnProperty(key)) {
+                const atleta = atleti[key];
+                this.view.addEntry(atleta, (() => this.showRisultatiAtleta(atleta)));
+            }
+        }
+    }
+
+    async showRisultatiAtleta(atleta) {
+        this.view.modifyCategoryTitle("Atleta: " + atleta.nome + " " + atleta.cognome);
+        const risultati = await this.model.getRisultatiAtleta(atleta.id);
+        this.view.clearDataTable();
+        this.view.initDataTable(Object.keys(risultati[0]));
+        for (let key in risultati) {
+            if (risultati.hasOwnProperty(key)) {
+                const risultato = risultati[key];
+                this.view.addEntry(risultato, (() => console.log(risultato)));
             }
         }
     }

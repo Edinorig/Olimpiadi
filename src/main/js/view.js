@@ -2,6 +2,7 @@ export class View {
     constructor() {
         this.dataTable = document.querySelector(".data-table");
         this.fasiButtons = document.querySelector(".fasi-buttons");
+        this.categoryTitle = document.querySelector(".category-title");
     }
 
     createElement(tag, className) {
@@ -10,7 +11,7 @@ export class View {
         return element
     }
 
-    addFaseButton(faseData, eventListener){
+    addFaseButton(faseData, eventListener) {
         const button = this.createElement("button");
         button.name = "fase";
         button.value = faseData.id;
@@ -20,43 +21,47 @@ export class View {
         this.fasiButtons.appendChild(button);
     }
 
-    clearDataTable(){
-        while(this.dataTable.firstChild){
+    clearDataTable() {
+        while (this.dataTable.firstChild) {
             this.dataTable.removeChild(this.dataTable.lastChild);
-          }
+        }
     }
 
-    initDataTable(columns){
+    initDataTable(columns) {
         const thead = this.createElement("thead");
         const trow = this.createElement("tr");
         this.dataTable.appendChild(thead);
         thead.appendChild(trow);
         columns.forEach(column => {
-          const newColumn = this.createElement("th");
-          newColumn.innerHTML = column;
-          trow.appendChild(newColumn);
+            const newColumn = this.createElement("th");
+            newColumn.innerHTML = column;
+            trow.appendChild(newColumn);
         })
         const tbody = this.createElement("tbody");
         this.dataTable.appendChild(tbody);
         this.dataTableTbody = tbody;
     }
 
-    addEntry(entry, eventListener){
+    addEntry(entry, eventListener) {
         const trow = this.createElement("tr", "data-row");
-        
-        if(eventListener){
+
+        if (eventListener) {
             trow.addEventListener("click", eventListener);
         }
-        
+
         for (let key in entry) {
-          if (entry.hasOwnProperty(key)) {
-            const tdata = this.createElement("td");
-            tdata.innerHTML = entry[key];
-            trow.appendChild(tdata);
-          }
+            if (entry.hasOwnProperty(key)) {
+                const tdata = this.createElement("td");
+                tdata.innerHTML = entry[key];
+                trow.appendChild(tdata);
+            }
         }
         this.dataTableTbody.appendChild(trow);
-      }
+    }
+
+    modifyCategoryTitle(title) {
+        this.categoryTitle.innerHTML = title;
+    }
 
 }
 
