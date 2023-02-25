@@ -35,7 +35,19 @@ class Controller {
 
     async showAtleti(team) {
         console.log(team);
-        await this.model.getAtletiBySquadra(team.id_squadra);
+        const atleti = await this.model.getAtletiBySquadra(team.id_squadra);
+        this.view.clearDataTable();
+        this.view.initDataTable(Object.keys(atleti[0]));
+        for (let key in atleti) {
+            if (atleti.hasOwnProperty(key)) {
+
+                //TODO  
+                //bisognerebbe anche far si che cliccando sulla gara si possa vedere la classifica, quindi si deve mettere un 
+                //click event anche su quella forse
+                const atleta = atleti[key];
+                this.view.addEntry(atleta, (() => console.log(atleta)));
+            }
+        }
     }
 }
 
