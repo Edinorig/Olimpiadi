@@ -18,8 +18,9 @@ class Controller {
             this.view.addFaseButton(fase, () => this.changeFase(fase))
         });
 
-        buttonCalendario.addEventListener('click', () => {
+        buttonCalendario.addEventListener('click', (e) => {
             this.getCalendario();
+            this.getclasificaGara();
         });
 
         searchBtn.addEventListener("click", () => {
@@ -82,6 +83,7 @@ class Controller {
         this.view.modifyCategoryTitle("Atleta: " + atleta.nome + " " + atleta.cognome);
         const risultati = await this.model.getRisultatiAtleta(atleta.id);
         this.view.clearDataTable();
+        
         this.view.initDataTable(Object.keys(risultati[0]));
         for (let key in risultati) {
             if (risultati.hasOwnProperty(key)) {
@@ -98,7 +100,22 @@ class Controller {
         for (let key in this.model.teams) {
             if (this.model.teams.hasOwnProperty(key)) {
                 const team = this.model.teams[key];
-                this.view.addEntry(team, (() => console.log(team)));
+                this.view.addEntry(team, (() => this.getclasificaGara(team)));
+            }
+        }
+    }
+
+    async getclasificaGara(team) {
+        debugger
+        await this.model.getClasificaGara(team.id);
+        this.view.clearDataTable();
+        console.log(this.model.risultatiClasifica[0]);
+        this.view.initDataTable(Object.keys(this.model.risultatiClasifica[0]));
+        for (let key in this.model.risultatiClasifica) {
+            console.log("Funziona");
+            if (this.model.risultatiClasifica.hasOwnProperty(key)) {
+                const team = this.model.risultatiClasifica[key];
+                this.view.addEntry(team, (() => console.log("Non funzione querry")));
             }
         }
     }

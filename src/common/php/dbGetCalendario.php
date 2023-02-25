@@ -3,8 +3,7 @@ require_once("dbConnect.php");
 $json = file_get_contents('php://input');
 $data = json_decode($json);
 
-$queryResponse = mysqli_query($db, "SELECT id,data,viaSede,target AS luogo_gara FROM tgara");
-
+$queryResponse = mysqli_query($db, "SELECT id, data ,viaSede, target AS luogo_gara FROM  tgara");
 $json = array();
 while ($row = mysqli_fetch_assoc($queryResponse)) {
     $json[] = $row;

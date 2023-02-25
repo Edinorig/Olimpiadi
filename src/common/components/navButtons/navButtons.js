@@ -20,7 +20,7 @@ class NavButtons {
     }
 
     initTemplate() {
-        console.log(this.props);
+        ;
         const parser = new DOMParser();
         const templateString = `
         <div class="wrapper-button">

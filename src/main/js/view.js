@@ -22,6 +22,7 @@ export class View {
     }
 
     clearDataTable() {
+        
         while (this.dataTable.firstChild) {
             this.dataTable.removeChild(this.dataTable.lastChild);
         }

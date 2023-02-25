@@ -50,7 +50,18 @@ export class Model {
         await UtilsFetch.postData("../common/php/getRisultatiAtleta.php", { id_atleta: id_atleta })
             .then(response => this.risultatiAtleta = JSON.parse(response.data))
             .catch(exeption => console.log(exeption));
+            console.log(this.risultatiAtleta);
         return this.risultatiAtleta;
+
+    }
+
+    async getClasificaGara(id_gara) {
+        console.log(id_gara);
+        await UtilsFetch.postData("../common/php/getClasificaGara.php", { id_gara: id_gara })
+            .then(response => this.risultatiClasifica = JSON.parse(response.data))
+            .catch(exeption => console.log(exeption));
+            console.log(this.risultatiClasifica);
+        return this.risultatiClasifica;
 
     }
 }
