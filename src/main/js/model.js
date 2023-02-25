@@ -30,4 +30,11 @@ export class Model {
         console.log(this.atleti);
         return this.atleti;
     }
+
+    async getRisultatiAtleta(id_atleta) {
+        await UtilsFetch.postData("../common/php/getRisultatiAtleta.php", { id_atleta: id_atleta })
+            .then(response => this.risultatiAtleta = JSON.parse(response.data))
+            .catch(exeption => console.log(exeption));
+        return this.risultatiAtleta;
+    }
 }
