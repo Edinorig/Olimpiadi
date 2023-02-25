@@ -24,13 +24,18 @@ class Controller {
         for (let key in this.model.teams) {
             if (this.model.teams.hasOwnProperty(key)) {
 
-                //TODO
+                //TODO  
                 //bisognerebbe anche far si che cliccando sulla gara si possa vedere la classifica, quindi si deve mettere un 
                 //click event anche su quella forse
                 const team = this.model.teams[key];
-                this.view.addEntry(team, (() => console.log(team)));
+                this.view.addEntry(team, (() => this.showAtleti(team)));
             }
         }
+    }
+
+    async showAtleti(team) {
+        console.log(team);
+        await this.model.getAtletiBySquadra(team.id_squadra);
     }
 }
 
