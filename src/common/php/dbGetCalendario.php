@@ -1,19 +1,18 @@
 <?php
-    require_once("dbConnect.php");
-    $json = file_get_contents('php://input');
-    $data = json_decode($json);
-    
-    $queryResponse = mysqli_query($db, "SELECT data,viaSede,target FROM tgara");
+require_once("dbConnect.php");
+$json = file_get_contents('php://input');
+$data = json_decode($json);
 
-    $json = array();
-    while($row = mysqli_fetch_assoc($queryResponse)){
-        $json[] = $row;
-     }
+$queryResponse = mysqli_query($db, "SELECT id,data,viaSede,target AS luogo_gara FROM tgara");
 
-    $response = array (
-        'status' => 200,
-        'data' => json_encode($json),
-    );
+$json = array();
+while ($row = mysqli_fetch_assoc($queryResponse)) {
+    $json[] = $row;
+}
 
-    echo json_encode($response);
-?>
+$response = array(
+    'status' => 200,
+    'data' => json_encode($json),
+);
+
+echo json_encode($response);
