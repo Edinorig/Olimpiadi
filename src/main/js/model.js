@@ -23,6 +23,20 @@ export class Model {
         return this.fasi;
     }
 
+
+    async getCalendario() {
+        await UtilsFetch.postData("../common/php/dbGetCalendario.php", {
+        })
+            .then(response => this.teams = JSON.parse(response.data))
+            .catch(exeption => console.log(exeption));;
+    }
+
+    async getAtletaByNome(nome_atleta) {
+        await UtilsFetch.postData("../common/php/getAtletaByNome.php", { nome_atleta: nome_atleta })
+            .then(response => this.atletiByNome = JSON.parse(response.data))
+            .catch(exeption => console.log(exeption));
+        return this.atletiByNome;
+
     async getAtletiBySquadra(team_id) {
         await UtilsFetch.postData("../common/php/getAtletaBySquadra.php", { id_squadra: team_id })
             .then(response => this.atleti = JSON.parse(response.data))
@@ -36,5 +50,6 @@ export class Model {
             .then(response => this.risultatiAtleta = JSON.parse(response.data))
             .catch(exeption => console.log(exeption));
         return this.risultatiAtleta;
+
     }
 }

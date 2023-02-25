@@ -8,9 +8,28 @@ class Controller {
     }
 
     async init() {
+        let buttonCalendario = document.querySelector('.calendario');
+        const searchInput = document.getElementById("search");
+        const searchBtn = document.getElementById("search-btn");
+
+        console.log(buttonCalendario);
         const fasi = await this.model.getFasi();
         fasi.forEach(fase => {
             this.view.addFaseButton(fase, () => this.changeFase(fase))
+        });
+
+        buttonCalendario.addEventListener('click', () => {
+            this.getCalendario();
+        });
+
+        searchBtn.addEventListener("click",  ()=> {
+            const nome = searchInput.value;
+
+            console.log(nome);
+
+            debugger
+
+            this.getAtletaByNome(nome);
         });
 
         this.fase = fasi[0]; //inizia con la fase scolastica
@@ -56,6 +75,31 @@ class Controller {
             if (risultati.hasOwnProperty(key)) {
                 const risultato = risultati[key];
                 this.view.addEntry(risultato, (() => console.log(risultato)));
+            }
+        }
+    }
+
+    async getCalendario() {
+        await this.model.getCalendario();
+        this.view.clearDataTable();
+        this.view.initDataTable(Object.keys(this.model.teams[0]));
+        for (let key in this.model.teams) {
+            if (this.model.teams.hasOwnProperty(key)) {
+                const team = this.model.teams[key];
+                this.view.addEntry(team, (() => console.log(team)));
+            }
+        }
+    }
+
+    async getAtletaByNome(nome) {
+        console.log(nome);
+        await this.model.getGaraPunteggio(nome);
+        this.view.clearDataTable();
+        this.view.initDataTable(Object.keys(this.model.teams[0]));
+        for (let key in this.model.teams) {
+            if (this.model.teams.hasOwnProperty(key)) {
+                const team = this.model.teams[key];
+                this.view.addEntry(team, (() => console.log(team)));
             }
         }
     }

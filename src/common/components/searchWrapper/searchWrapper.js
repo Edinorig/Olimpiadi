@@ -1,4 +1,4 @@
-class Header {
+class SearchWrapper {
     constructor(parent, props) {
         this.parentElement = parent;
         this.props = props;
@@ -20,15 +20,15 @@ class Header {
     }
 
     initTemplate() {
+        console.log(this.props);
         const parser = new DOMParser();
         const templateString = `
-        <header>
-            <div class ="header">
-                <a href="../../index.php" class = "logo"><img src = "../common/assets/header_logo.svg" class = "logo"></a>
-            </div>
-        </header>`;
+        <div class="wrapper-search-bar">
+            <input type="text" id="search" placeholder="Search...">
+            <button id="search-btn">Search</button>
+        </div>`;
         const templateElement = parser.parseFromString(templateString, 'text/html');
-        return templateElement.documentElement.querySelector("body > header");
+        return templateElement.documentElement.querySelector("body > .wrapper-search-bar");
     }
 }
-export default Header;
+export default SearchWrapper;

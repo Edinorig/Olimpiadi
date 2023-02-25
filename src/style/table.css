@@ -1,15 +1,18 @@
 table {
-    width: 74rem;
-    height: 20rem;
+
     margin-left: 10px;
 }
 
-th {
-    width: 3rem;
-    height: 2rem;
+thead th {
+    height: 3rem;
+    width: 10rem;
     padding: 0.5rem;
     color: var(--text-black);
-}
+  }
+
+  tbody td{
+    height: 2.5rem;
+  }
 
 thead {
     border-collapse: collapse;
@@ -27,7 +30,7 @@ thead {
     border-radius: 10px 0px 0px 10px;
 }
 
-.content>table>thead>tr>th:nth-child(7) {
+.content>table>thead>tr>th:nth-last-child(1) {
     border-radius: 0px 10px 10px 0px;
 }
 
@@ -45,6 +48,6 @@ body>div>div.content>table>tbody>tr>td:nth-child(1) {
     border-radius: 10px 0px 0px 10px;
 }
 
-body>div>div.content>table>tbody>tr>td:nth-child(7) {
+body>div>div.content>table>tbody>tr>td:nth-last-child(1) {
     border-radius: 0px 10px 10px 0px;
 }
