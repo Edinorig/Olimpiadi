@@ -36,6 +36,7 @@ export class Model {
             .then(response => this.atletiByNome = JSON.parse(response.data))
             .catch(exeption => console.log(exeption));
         return this.atletiByNome;
+    }
 
     async getAtletiBySquadra(team_id) {
         await UtilsFetch.postData("../common/php/getAtletaBySquadra.php", { id_squadra: team_id })
