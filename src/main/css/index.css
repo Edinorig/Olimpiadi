@@ -1,23 +1,50 @@
-body{
-    margin: 0;
-
-    height: 100vh;
-    width: 100vw;
-
-    padding-left: 8rem;
-    padding-right: 8rem;
-
+body {
+    margin-top: 3rem;
+    max-height: 100vh;
+    margin-left: 4rem;
     background: var(--background);
 }
 
-.data-row{
+.data-row {
     cursor: pointer;
 }
 
-.data-row:hover{
+.data-row:hover {
     text-decoration: underline;
 }
 
-.data-row:active{
+.data-row:active {
     opacity: 0.4;
+}
+
+button {
+    width: 200px;
+    height: 32px;
+
+    border: 1px solid #2EC4B6;
+    border-radius: 10px;
+
+    background: transparent;
+    margin-left: 1rem;
+
+    cursor: pointer;
+}
+
+button:focus,
+button:hover {
+    background: var(--background-accent);
+    color: var(--text-extend);
+}
+
+p{
+    margin: 0;
+}
+
+
+.wrapper-content{
+    margin-top: 5rem;
+}
+
+.content{
+    margin-top: 1rem;
 }

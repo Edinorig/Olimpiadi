@@ -14,7 +14,8 @@ export class View {
         const button = this.createElement("button");
         button.name = "fase";
         button.value = faseData.id;
-        button.innerHTML = faseData.nome;
+        button.classList.add("fasi");
+        button.innerHTML = `<p>${faseData.nome}</p>`;
         button.addEventListener("click", eventListener);
         this.fasiButtons.appendChild(button);
     }

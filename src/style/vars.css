@@ -6,4 +6,6 @@
 
     --text: #272727;
     --text-extend: #FFFFFF;
+    --text-accent: rgba(46, 196, 182, 0.8);
+    --text-black: #272727;
 }
