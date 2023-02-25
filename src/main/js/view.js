@@ -63,6 +63,7 @@ export class View {
 
 import Header from "../../common/components/header/header.js";
 import NavButtons from "../../common/components/navButtons/navButtons.js";
+import SearchWrapper from "../../common/components/searchWrapper/searchWrapper.js";
 
 const wrapper = {
     header: document.querySelector('section#header'),
@@ -80,3 +81,6 @@ header.init();
 const buttonName = "Calendario"
 const navButtons = new NavButtons(wrapper.navButtons , buttonName);
 navButtons.init();
+
+const serach = new SearchWrapper(wrapper.navButtons)
+serach.init();

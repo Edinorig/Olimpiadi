@@ -34,8 +34,8 @@ button {
     margin-top: 0.5rem;
 }
 
-button:focus,
-button:hover {
+.fasi:focus,
+.fasi:hover {
     background: var(--background-accent);
     color: var(--text-extend);
 }
@@ -47,8 +47,31 @@ p{
 
 .wrapper-content{
     margin-top: 5rem;
+    width: 80rem;
 }
 
 .content{
     margin-top: 1rem;
+}
+
+.wrapper-calendar{
+    display: flex;
+    justify-content: space-between;
+}
+
+#search-btn{
+    width: 100px;
+    border: 1px solid #272727;
+    height: 37px;
+}
+
+#search{
+    width: 150px;
+    height: 32px;
+
+    border: 1px solid #FF9F1C;
+    border-radius: 10px;
+    padding-left: 0.5rem;
+
+    background: transparent;
 }
