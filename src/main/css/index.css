@@ -30,7 +30,7 @@ button {
     cursor: pointer;
 }
 
-.fasi-buttons{
+.fasi-buttons {
     margin-top: 0.5rem;
 }
 
@@ -40,32 +40,32 @@ button {
     color: var(--text-extend);
 }
 
-p{
+p {
     margin: 0;
 }
 
 
-.wrapper-content{
+.wrapper-content {
     margin-top: 5rem;
     width: 80rem;
 }
 
-.content{
+.content {
     margin-top: 1rem;
 }
 
-.wrapper-calendar{
+.wrapper-calendar {
     display: flex;
     justify-content: space-between;
 }
 
-#search-btn{
+#search-btn {
     width: 100px;
     border: 1px solid #272727;
     height: 37px;
 }
 
-#search{
+#search {
     width: 150px;
     height: 32px;
 

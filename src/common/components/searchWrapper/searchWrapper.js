@@ -24,8 +24,8 @@ class SearchWrapper {
         const parser = new DOMParser();
         const templateString = `
         <div class="wrapper-search-bar">
-            <input type="text" id="search" placeholder="Search...">
-            <button id="search-btn">Search</button>
+            <input type="text" id="search" placeholder="Cerca nome atleta...">
+            <button id="search-btn">Cerca</button>
         </div>`;
         const templateElement = parser.parseFromString(templateString, 'text/html');
         return templateElement.documentElement.querySelector("body > .wrapper-search-bar");

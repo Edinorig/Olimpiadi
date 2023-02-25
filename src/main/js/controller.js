@@ -22,14 +22,12 @@ class Controller {
             this.getCalendario();
         });
 
-        searchBtn.addEventListener("click",  ()=> {
+        searchBtn.addEventListener("click", () => {
             const nome = searchInput.value;
 
             console.log(nome);
 
-            debugger
-
-            this.getAtletaByNome(nome);
+            this.showAtletiByNome(nome);
         });
 
         this.fase = fasi[0]; //inizia con la fase scolastica
@@ -65,6 +63,20 @@ class Controller {
             }
         }
     }
+
+    async showAtletiByNome(nome) {
+        this.view.modifyCategoryTitle("Atleti di nome: " + nome);
+        const atleti = await this.model.getAtletaByNome(nome);
+        this.view.clearDataTable();
+        this.view.initDataTable(Object.keys(atleti[0]));
+        for (let key in atleti) {
+            if (atleti.hasOwnProperty(key)) {
+                const atleta = atleti[key];
+                this.view.addEntry(atleta, (() => this.showRisultatiAtleta(atleta)));
+            }
+        }
+    }
+
 
     async showRisultatiAtleta(atleta) {
         this.view.modifyCategoryTitle("Atleta: " + atleta.nome + " " + atleta.cognome);
