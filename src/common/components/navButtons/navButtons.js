@@ -1,4 +1,4 @@
-class Header {
+class NavButtons {
     constructor(parent, props) {
         this.parentElement = parent;
         this.props = props;
@@ -20,15 +20,18 @@ class Header {
     }
 
     initTemplate() {
+        console.log(this.props);
         const parser = new DOMParser();
         const templateString = `
-        <header>
-            <div class ="header">
-                <a href="../../index.php" class = "logo"><img src = "../common/assets/header_logo.svg" class = "logo"></a>
-            </div>
-        </header>`;
+        <div class="wrapper-button">
+            <button class="fasi calendario">
+                <p> 
+                    ${this.props}
+                </p>
+            </button>
+        </div>`;
         const templateElement = parser.parseFromString(templateString, 'text/html');
-        return templateElement.documentElement.querySelector("body > header");
+        return templateElement.documentElement.querySelector("body > .wrapper-button");
     }
 }
-export default Header;
+export default NavButtons;

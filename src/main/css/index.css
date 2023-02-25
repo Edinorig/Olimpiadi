@@ -30,6 +30,10 @@ button {
     cursor: pointer;
 }
 
+.fasi-buttons{
+    margin-top: 0.5rem;
+}
+
 button:focus,
 button:hover {
     background: var(--background-accent);

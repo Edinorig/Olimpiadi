@@ -22,4 +22,11 @@ export class Model {
         console.log(this.fasi);
         return this.fasi;
     }
+
+    async getCalendario(){
+        await UtilsFetch.postData("../common/php/dbGetCalendario.php", {
+        })
+            .then(response => this.teams = JSON.parse(response.data))
+            .catch(exeption => console.log(exeption));;
+    }
 }
