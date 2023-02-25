@@ -3,6 +3,7 @@ export class View {
         this.dataTable = document.querySelector(".data-table");
         this.fasiButtons = document.querySelector(".fasi-buttons");
         this.categoryTitle = document.querySelector(".category-title");
+        this.winnerButton = document.querySelector("#winner-button");
     }
 
     createElement(tag, className) {
@@ -85,7 +86,7 @@ header.init();
 
 
 const buttonName = "Calendario"
-const navButtons = new NavButtons(wrapper.navButtons , buttonName);
+const navButtons = new NavButtons(wrapper.navButtons, buttonName);
 navButtons.init();
 
 const serach = new SearchWrapper(wrapper.navButtons)

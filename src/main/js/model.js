@@ -2,7 +2,7 @@ import UtilsFetch from "../../common/js/utilsFetch.js";
 
 export class Model {
     constructor() {
-
+        this.getWinners();
     }
 
     async fetchTeamsByFase(fase) {
@@ -55,6 +55,7 @@ export class Model {
 
     }
 
+
     async getClasificaGara(id_gara) {
         console.log(id_gara);
         await UtilsFetch.postData("../common/php/getClasificaGara.php", { id_gara: id_gara })
@@ -62,6 +63,13 @@ export class Model {
             .catch(exeption => console.log(exeption));
             console.log(this.risultatiClasifica);
         return this.risultatiClasifica;
+
+
+    async getWinners() {
+        await UtilsFetch.postData("../common/php/getWinners.php")
+            .then(response => this.winners = JSON.parse(response.data))
+            .catch(exeption => console.log(exeption));
+        return this.winners;
 
     }
 }
