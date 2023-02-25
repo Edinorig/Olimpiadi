@@ -30,7 +30,7 @@ button {
     cursor: pointer;
 }
 
-button:active,
+button:focus,
 button:hover {
     background: var(--background-accent);
     color: var(--text-extend);

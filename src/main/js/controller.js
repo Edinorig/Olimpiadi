@@ -7,7 +7,7 @@ class Controller {
         this.init();
     }
 
-    async init(){
+    async init() {
         const fasi = await this.model.getFasi();
         fasi.forEach(fase => {
             this.view.addFaseButton(fase, () => this.changeFase(fase))
@@ -17,7 +17,7 @@ class Controller {
         this.changeFase(this.fase);
     }
 
-    async changeFase(fase){
+    async changeFase(fase) {
         await this.model.fetchTeamsByFase(fase.id);
         this.view.clearDataTable();
         this.view.initDataTable(Object.keys(this.model.teams[0]));
