@@ -59,7 +59,7 @@ body {
 }
 
 button {
-    width: 200px;
+    width: 129px;
     height: 32px;
 
     border: 1px solid #2EC4B6;
@@ -73,6 +73,8 @@ button {
 
 .fasi-buttons {
     margin-top: 0.5rem;
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 .fasi:focus,
@@ -115,4 +117,16 @@ p {
     padding-left: 0.5rem;
 
     background: transparent;
+}
+
+
+
+.wrapper-winners{
+    display: flex;
+    display: flex;
+    width: 44rem;
+}
+
+.wrapper-fasi{
+    display: flex;
 }

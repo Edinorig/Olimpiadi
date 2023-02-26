@@ -1,7 +1,7 @@
 export class View {
     constructor() {
         this.dataTable = document.querySelector(".data-table");
-        this.fasiButtons = document.querySelector(".fasi-buttons");
+        this.fasiButtons = document.querySelector(".wrapper-fasi");
         this.categoryTitle = document.querySelector(".category-title");
         this.winnerButton = document.querySelector("#winner-button");
         this.schoolsButton = document.querySelector("#schools-button");
