@@ -4,6 +4,7 @@ export class View {
         this.fasiButtons = document.querySelector(".fasi-buttons");
         this.categoryTitle = document.querySelector(".category-title");
         this.winnerButton = document.querySelector("#winner-button");
+        this.schoolsButton = document.querySelector("#schools-button");
 
         this.winners = document.querySelector(".winners");
         this.winners.style.display = "none";

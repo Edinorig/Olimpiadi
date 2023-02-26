@@ -5,6 +5,14 @@ export class Model {
         this.getWinners();
     }
 
+    async getIstituti() {
+        await UtilsFetch.postData("../common/php/getIstituti.php")
+            .then(response => this.istituti = JSON.parse(response.data))
+            .catch(exeption => console.log(exeption));
+        console.log(this.istituti);
+        return this.istituti;
+    }
+
     async fetchTeamsByFase(fase) {
         await UtilsFetch.postData("../common/php/getSquadreByFaseGara.php", {
             id_fase: fase,

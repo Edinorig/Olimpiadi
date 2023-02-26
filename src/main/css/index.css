@@ -20,6 +20,20 @@ body {
     opacity: 0.6;
 }
 
+#schools-button {
+    border-color: rgb(4, 68, 51);
+    border-width: 2px;
+    background-color: rgb(104, 220, 201);
+}
+
+#schools-button:hover {
+    opacity: 0.8;
+}
+
+#schools-button:active {
+    opacity: 0.6;
+}
+
 .winner {
     margin: 50px;
     display: inline-block;

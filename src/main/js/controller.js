@@ -4,6 +4,7 @@ class Controller {
     constructor(model, view) {
         this.model = model;
         this.view = view;
+        this.model.getIstituti();
         this.init();
     }
 
@@ -30,6 +31,8 @@ class Controller {
         });
 
         this.view.winnerButton.addEventListener("click", () => this.showWinners());
+
+        this.view.schoolsButton.addEventListener("click", () => this.showIstituti());
 
         this.fase = fasi[0]; //inizia con la fase scolastica
         this.changeFase(this.fase);
@@ -58,6 +61,19 @@ class Controller {
         const winners = await this.model.getWinners();
         console.log(winners);
         this.view.updateWinners(winners);
+    }
+
+    async showIstituti() {
+        this.view.modifyCategoryTitle("Istituti scolastici:");
+        const atleti = await this.model.getIstituti();
+        this.view.clearDataTable();
+        this.view.initDataTable(Object.keys(atleti[0]));
+        for (let key in atleti) {
+            if (atleti.hasOwnProperty(key)) {
+                const atleta = atleti[key];
+                this.view.addEntry(atleta);
+            }
+        }
     }
 
     async showAtleti(team) {
