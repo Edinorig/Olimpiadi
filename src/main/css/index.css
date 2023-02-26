@@ -20,6 +20,18 @@ body {
     opacity: 0.6;
 }
 
+.winner {
+    margin: 50px;
+    display: inline-block;
+    border-style: solid;
+    border-color: yellow;
+    padding: 10px;
+}
+
+.winner-data {
+    font-size: 20px;
+}
+
 .data-row {
     cursor: pointer;
 }

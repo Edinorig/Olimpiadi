@@ -57,6 +57,7 @@ class Controller {
         this.view.modifyCategoryTitle("Vincitori");
         const winners = await this.model.getWinners();
         console.log(winners);
+        this.view.updateWinners(winners);
     }
 
     async showAtleti(team) {

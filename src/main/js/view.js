@@ -4,6 +4,36 @@ export class View {
         this.fasiButtons = document.querySelector(".fasi-buttons");
         this.categoryTitle = document.querySelector(".category-title");
         this.winnerButton = document.querySelector("#winner-button");
+
+        this.winners = document.querySelector(".winners");
+        this.winners.style.display = "none";
+    }
+
+
+    updateWinners(winners) {
+        this.winners.style.display = "block";
+        this.dataTable.style.display = "none";
+        this.winners.querySelector("#winner-team-title").innerHTML = "Squadra vincitrice: " + winners.squadra.squadra;
+        this.winners.querySelector("#winner-atleta-title").innerHTML = "Atleta vincitore: " + winners.atleta.nome + " " + winners.atleta.cognome;
+
+        const winner_team_data = this.winners.querySelector("#winner-team-data");
+        let data = "";
+        for (let key in winners.squadra) {
+            if (winners.squadra.hasOwnProperty(key)) {
+                data += key + " : " + winners.squadra[key] + "<br>";
+            }
+        }
+        winner_team_data.innerHTML = "<p class = 'winner-data'>" + data + "</p>";
+
+        const winner_atleta_data = this.winners.querySelector("#winner-atleta-data");
+        data = "";
+        for (let key in winners.atleta) {
+            if (winners.atleta.hasOwnProperty(key)) {
+                data += key + " : " + winners.atleta[key] + "<br>";
+            }
+        }
+        winner_atleta_data.innerHTML = "<p class = 'winner-data'>" + data + "</p>";
+
     }
 
     createElement(tag, className) {
@@ -23,7 +53,8 @@ export class View {
     }
 
     clearDataTable() {
-        
+        this.dataTable.style.display = "block";
+        this.winners.style.display = "none";
         while (this.dataTable.firstChild) {
             this.dataTable.removeChild(this.dataTable.lastChild);
         }
