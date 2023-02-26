@@ -5,9 +5,10 @@ $data = json_decode($json);
 
 $id_atleta = $data->id_atleta;
 
-$queryResponse = mysqli_query($db, "SELECT tgara.target AS luogo_gara, tpartecipazioneatleta.punteggio AS punteggio_atleta, tgara.data AS data_gara FROM tpartecipazioneatleta
+$queryResponse = mysqli_query($db, "SELECT tgara.id, tgara.target AS luogo_gara, tpartecipazioneatleta.punteggio AS punteggio_atleta, tgara.data AS data_gara, tfasegara.nome AS fase_gara  FROM tpartecipazioneatleta
 INNER JOIN tatleta ON tpartecipazioneatleta.idAtleta = tatleta.id
 INNER JOIN tgara ON tpartecipazioneatleta.idGara = tgara.id
+INNER JOIN tfasegara ON tgara.idFaseGara = tfasegara.id
 WHERE tatleta.id = $id_atleta;");
 
 $json = array();

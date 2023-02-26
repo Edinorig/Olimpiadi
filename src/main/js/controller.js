@@ -11,15 +11,14 @@ class Controller {
         let buttonCalendario = document.querySelector('.calendario');
         const searchInput = document.getElementById("search");
         const searchBtn = document.getElementById("search-btn");
-
-        console.log(buttonCalendario);
         const fasi = await this.model.getFasi();
         fasi.forEach(fase => {
             this.view.addFaseButton(fase, () => this.changeFase(fase))
         });
 
-        buttonCalendario.addEventListener('click', () => {
+        buttonCalendario.addEventListener('click', (e) => {
             this.getCalendario();
+            //this.getclasificaGara();
         });
 
         searchBtn.addEventListener("click", () => {
@@ -37,7 +36,7 @@ class Controller {
     }
 
     async changeFase(fase) {
-        this.view.modifyCategoryTitle("Squadre");
+        this.view.modifyCategoryTitle("Squadre fase: " + fase.nome);
         await this.model.fetchTeamsByFase(fase.id);
         this.view.clearDataTable();
         this.view.initDataTable(Object.keys(this.model.teams[0]));
@@ -61,7 +60,7 @@ class Controller {
     }
 
     async showAtleti(team) {
-        this.view.modifyCategoryTitle("Atleti");
+        this.view.modifyCategoryTitle("Atleti della squadra: " + team.squadra);
         const atleti = await this.model.getAtletiBySquadra(team.id_squadra);
         this.view.clearDataTable();
         this.view.initDataTable(Object.keys(atleti[0]));
@@ -88,32 +87,47 @@ class Controller {
 
 
     async showRisultatiAtleta(atleta) {
-        this.view.modifyCategoryTitle("Atleta: " + atleta.nome + " " + atleta.cognome);
+        this.view.modifyCategoryTitle("Gare in cui ha partecipato " + atleta.nome + " " + atleta.cognome);
         const risultati = await this.model.getRisultatiAtleta(atleta.id);
         this.view.clearDataTable();
+
         this.view.initDataTable(Object.keys(risultati[0]));
         for (let key in risultati) {
             if (risultati.hasOwnProperty(key)) {
                 const risultato = risultati[key];
-                this.view.addEntry(risultato, (() => console.log(risultato)));
+                this.view.addEntry(risultato, (() => this.getclasificaGara(risultato)));
             }
         }
     }
 
     async getCalendario() {
+        this.view.modifyCategoryTitle("Calendario gare");
         await this.model.getCalendario();
         this.view.clearDataTable();
+        console.log(this.model.teams);
         this.view.initDataTable(Object.keys(this.model.teams[0]));
         for (let key in this.model.teams) {
             if (this.model.teams.hasOwnProperty(key)) {
                 const team = this.model.teams[key];
-                this.view.addEntry(team, (() => console.log(team)));
+                this.view.addEntry(team, (() => this.getclasificaGara(team)));
+            }
+        }
+    }
+
+    async getclasificaGara(team) {
+        this.view.modifyCategoryTitle("Classifica della gara: " + team.luogo_gara + " (" + team.fase_gara + ")");
+        await this.model.getClasificaGara(team.id);
+        this.view.clearDataTable();
+        this.view.initDataTable(Object.keys(this.model.risultatiClasifica[0]));
+        for (let key in this.model.risultatiClasifica) {
+            if (this.model.risultatiClasifica.hasOwnProperty(key)) {
+                const team = this.model.risultatiClasifica[key];
+                this.view.addEntry(team, (() => this.showRisultatiAtleta(team)));
             }
         }
     }
 
     async getAtletaByNome(nome) {
-        console.log(nome);
         await this.model.getGaraPunteggio(nome);
         this.view.clearDataTable();
         this.view.initDataTable(Object.keys(this.model.teams[0]));
